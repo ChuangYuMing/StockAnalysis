@@ -1,0 +1,102 @@
+@import 'styles/helpers/mixins';
+
+.main-wrap {
+  position: fixed;
+  z-index: 10;
+  top: 0px;
+  width: 100%;
+  max-width: 1440px;
+  background-color: skyblue;
+  height: 40px;
+  a, a:visited, a:hover, a:active {
+    color: inherit;
+  }
+  ul {
+    display: table;
+    position: relative;
+    height: 100%;
+    li {
+      height: 100%;
+      line-height: 40px;
+      display: table-cell;
+      span {
+        display: inline-block;
+        padding: 0 5px;
+        cursor: pointer;
+      }
+    }
+  }
+  .navigator {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    .layer-one-wrap {
+      width: 100%;
+      .layer-one-item {
+        text-align: center;
+        display: inline-block;
+        width: (100% / 5);
+      }
+    }
+  }
+}
+
+.layer-one-item:hover {
+  background-color: rgba(#f17d52, 0.9);
+  .layer-one {
+    display: block;
+  }
+}
+.layer-two-item {
+  .have-content {
+    display: inline-block;
+    position: relative;
+    &:hover {
+      &:before {
+        content: "";
+        position: absolute;
+        bottom: 1px;
+        left: 33%;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 10px 10px 10px;
+        border-color: transparent transparent #007bff transparent;
+      }
+    }
+  }
+  &:hover {
+    background-color: rgba(#f0c565, 0.78);
+    .layer-two {
+      display: block;
+      span:hover {
+        color: #f46f0f;
+      }
+    }
+  }
+}
+
+.layer-two {
+  height: 70px;
+  margin-top: -5px;
+  margin-left: -1px;
+  border: solid 1px #555151;
+  border-top: solid 1px #adbdc6;
+  text-align: left;
+  @extend .vertical-middle;
+  .layer-two-content {
+    display: inline-block;
+  }
+}
+.layer-one {
+  border: solid 1px #555151;
+}
+.layer-one, .layer-two {
+  border-radius: 0 0 5px 5px;
+  position: absolute;
+  left: 0px;
+  display: none;
+  background-color: white;
+  z-index: 2;
+  font-size: 14px;
+}
