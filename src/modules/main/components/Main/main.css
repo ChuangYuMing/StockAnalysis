@@ -1,0 +1,5 @@
+@import 'helpers/_mixins.css';
+
+.main-wrap {
+  color: red;
+}

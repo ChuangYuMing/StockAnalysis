@@ -442,7 +442,7 @@ function getDateFromFormat(val, format) {
 // ------------------------------------------------------------------
 function parseDate(val) {
   var preferEuro = arguments.length == 2 ? arguments[1] : false
-  generalFormats = new Array(
+  let generalFormats = new Array(
     'y-M-d',
     'MMM d, y',
     'MMM d,y',
@@ -450,8 +450,8 @@ function parseDate(val) {
     'd-MMM-y',
     'MMM d'
   )
-  monthFirst = new Array('M/d/y', 'M-d-y', 'M.d.y', 'MMM-d', 'M/d', 'M-d')
-  dateFirst = new Array('d/M/y', 'd-M-y', 'd.M.y', 'd-MMM', 'd/M', 'd-M')
+  let monthFirst = new Array('M/d/y', 'M-d-y', 'M.d.y', 'MMM-d', 'M/d', 'M-d')
+  let dateFirst = new Array('d/M/y', 'd-M-y', 'd.M.y', 'd-MMM', 'd/M', 'd-M')
   var checkList = new Array(
     'generalFormats',
     preferEuro ? 'dateFirst' : 'monthFirst',

@@ -1,18 +1,15 @@
 import * as types from './action-types'
+import { fromJS } from 'immutable'
 
-let init = {
-  temp: 'ttt11t',
-  login: false,
-  clientIP: '',
-  apiDomain: '',
-  allCompany: {}
-}
+let init = fromJS({
+  isLogin: false,
+  test: 'haha'
+})
+
 export default (state = init, action) => {
   switch (action.type) {
-    case types.TEMP_TEST:
-      return action.data
     case types.UPDATE_APP_INFO:
-      return Object.assign({}, state, action.data)
+      return state.merge(action.data)
     default:
       return state
   }

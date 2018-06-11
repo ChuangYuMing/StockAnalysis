@@ -1,56 +1,22 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { persistStore, autoRehydrate } from 'redux-persist'
-import history from '../../../../history'
-import { store } from 'store/index.js'
+import { PersistGate } from 'redux-persist/lib/integration/react'
+import { store, persistor } from 'store/index.js'
+import { hot } from 'react-hot-loader'
 import App from '../App'
-import withTracker from 'modules/common/withTracker.js'
 
-let AppWithGA = withTracker(App)
+// import withTracker from 'modules/common/withTracker.js'
 
-function rehydrated() {
-  let whiteList = ['app']
-  const persistConfig = {
-    whitelist: whiteList
-  }
-  return new Promise((resolve, reject) => {
-    persistStore(store, persistConfig, () => {
-      console.log('rehydration complete')
-      resolve(true)
-    })
-  })
-}
-
-function getSessionId() {
-  return new Promise((resolve, reject) => {
-    resolve(true)
-  })
-}
+// let AppWithGA = withTracker(App)
+let AppWithGA = App
 
 class AppProvider extends React.Component {
   constructor() {
     super()
-    this.state = {
-      load: false
-    }
-  }
-
-  componentWillMount() {
-    Promise.all([rehydrated(), getSessionId()])
-      .then(results => {
-        this.setState({ load: true })
-      })
-      .catch(e => {
-        console.log(e)
-      })
   }
 
   render() {
-    console.log('render app')
-    if (!this.state.load) {
-      return <div />
-    }
     return (
       <Provider store={store}>
         <Router>
@@ -61,4 +27,4 @@ class AppProvider extends React.Component {
   }
 }
 
-export default AppProvider
+export default hot(module)(AppProvider)

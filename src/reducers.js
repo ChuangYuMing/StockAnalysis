@@ -1,12 +1,20 @@
 import { combineReducers } from 'redux'
-import app from './modules/app'
-import menu from './modules/menu'
-import credit from './modules/credit'
+// not use this, because using react-persist with immutable
+// import { combineReducers } from 'redux-immutable'
 
-const manipulator = combineReducers({
-  [app.constants.NAME]: app.reducer,
-  [menu.constants.NAME]: menu.reducer,
-  [credit.constants.NAME]: credit.reducer
+import app from './modules/app'
+import { LOG_OUT } from 'modules/main/action-types.js'
+
+const appReducer = combineReducers({
+  [app.constants.NAME]: app.reducer
 })
 
-export default manipulator
+const rootReducer = (state, action) => {
+  if (action.type === LOG_OUT) {
+    state = undefined
+  }
+
+  return appReducer(state, action)
+}
+
+export default rootReducer

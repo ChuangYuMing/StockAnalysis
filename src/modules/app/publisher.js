@@ -1,5 +1,6 @@
 import { Publisher } from 'tools/pub-sub'
 
-const tempTest = new Publisher()
+const temp = new Publisher()
+const temp2 = new Publisher()
 
-export { tempTest }
+export { temp, temp2 }
